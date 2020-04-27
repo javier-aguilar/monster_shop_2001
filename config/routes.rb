@@ -1,9 +1,23 @@
 Rails.application.routes.draw do
   root "welcome#index"
 
-  resources :merchants
-  resources :items, only: [:index, :show, :edit, :update, :destroy]
-  resources :reviews, only: [:edit, :update, :destroy]
+  get "/merchants", to: "merchants#index"
+  post "/merchants", to: "merchants#create"
+  get "/merchants/new", to: "merchants#new"
+  get "/merchants/:id/edit", to: "merchants#edit"
+  get "/merchants/:id", to: "merchants#show"
+  patch  "/merchants/:id", to: "merchants#update"
+  delete "/merchants/:id", to: "merchants#destroy"
+
+  get "/items", to: "items#index"
+  get "/items/:id/edit", to: "items#edit"
+  get "/items/:id", to: "items#show"
+  patch  "/items/:id", to: "items#update"
+  delete "/items/:id", to: "items#destroy"
+
+  get "/reviews/:id/edit", to: "reviews#edit"
+  patch  "/reviews/:id", to: "reviews#update"
+  delete "/reviews/:id", to: "reviews#destroy"
 
   get "/merchants/:merchant_id/items", to: "items#index"
   get "/merchants/:merchant_id/items/new", to: "items#new"
@@ -18,7 +32,10 @@ Rails.application.routes.draw do
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
 
-  resources :orders, only: [:new, :create, :show]
+  post "/orders", to: "orders#create"
+  get "/orders/new", to: "orders#new"
+  get "/orders/:id", to: "orders#show"
+
   patch "/orders/:order_id", to:"orders#update"
 
   get "/register", to: "users#new"
