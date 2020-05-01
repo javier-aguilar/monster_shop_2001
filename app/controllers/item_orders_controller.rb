@@ -1,11 +1,11 @@
 class ItemOrdersController < ApplicationController
 
   def show
-    @item_order = ItemOrder.find(item_order_params[:item_order_id])
+    @item_order = ItemOrder.find(item_order_params[:id])
   end
 
   def update
-    @item_order = ItemOrder.find(item_order_params[:item_order_id])
+    @item_order = ItemOrder.find(item_order_params[:id])
     if item_order_params[:type] == "fulfill"
       @item_order.update(:status => "Fulfilled")
       line_items = @item_order.order.item_orders
@@ -18,6 +18,6 @@ class ItemOrdersController < ApplicationController
   private
 
   def item_order_params
-    params.permit(:item_order_id, :type)
+    params.permit(:id, :type)
   end
 end

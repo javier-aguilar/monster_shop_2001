@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def new
+  def index
     @user = User.new
   end
 
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if User.where(email:@user.email) != []
       flash[:error] = "That email address is already registered."
-      render :new
+      render :index
     elsif @user.save
       session[:id] = @user.id
       @user.update(role: 0)
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       redirect_to "/profile"
     else
       flash[:error] = "You are missing required fields."
-      render :new
+      render :index
     end
   end
 

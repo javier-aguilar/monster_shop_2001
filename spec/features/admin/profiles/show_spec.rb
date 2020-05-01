@@ -19,6 +19,7 @@ RSpec.describe("Admin User Show Page") do
                  zip: "17033",
                  email: "meg@example.com",
                  password: "123456",
+                 password_confirmation: "123456",
                  role: 0)
     end
 

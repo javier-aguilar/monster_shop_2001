@@ -11,7 +11,7 @@ class Admin::MerchantsController < ApplicationController
   end
 
   def update
-    @merchant = Merchant.find(merchant_params[:merchant_id])
+    @merchant = Merchant.find(merchant_params[:id])
     if merchant_params[:type]
       update = merchant_params[:type] == "enable" ? true : false
       @merchant.update(:active => update)
@@ -20,10 +20,10 @@ class Admin::MerchantsController < ApplicationController
       redirect_to "/admin/merchants"
     end
   end
-  
+
   private
 
   def merchant_params
-    params.permit(:type, :merchant_id)
+    params.permit(:type, :id)
   end
 end

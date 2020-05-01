@@ -7,12 +7,12 @@ class Admin::ProfileController < ApplicationController
   end
 
   def show
-    @profile = User.find(user_params[:profile_id])
+    @profile = User.find(user_params[:id])
   end
 
   private
 
   def user_params
-    params.permit(:profile_id)
+    params.permit(:id)
   end
 end

@@ -6,7 +6,7 @@ class Merchant::OrdersController < ApplicationController
 
   def update
     item = Item.find(params[:item_order_id])
-    order = Order.find(params[:order_id])
+    order = Order.find(params[:id])
     item_order = order.item_orders.where(:item_id => params[:item_order_id]).first
     item_order.status = "Fulfilled"
     item_order.save

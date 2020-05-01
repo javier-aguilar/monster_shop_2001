@@ -7,7 +7,7 @@
   <p>Email: <%=@profile.email%></p>
   <% if current_user.id == @profile.id%>
     <%= link_to "Edit My Profile Data", "/profile/#{@profile.id}/edit"%> |
-    <%= link_to "Edit My Password", "/profile/#{@profile.id}/password"%>
+    <%= link_to "Edit My Password", "/password/#{@profile.id}/edit"%>
     <% if @profile.order_count > 0 %>
       <%= link_to "My Orders", "profile/orders" %>
     <% end %>

@@ -7,12 +7,12 @@ class Profile::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(order_params[:order_id])
+    @order = Order.find(order_params[:id])
   end
 
   private
 
   def order_params
-    params.permit(:order_id)
+    params.permit(:id)
   end
 end

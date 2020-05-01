@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(order_params[:order_id])
+    @order = Order.find(order_params[:id])
     if order_params[:type] == "cancel"
       @order.update(:status => "Canceled")
       @order.item_orders.each do |item_order|
@@ -42,6 +42,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:name, :address, :city, :state, :zip, :type, :order_id)
+    params.permit(:name, :address, :city, :state, :zip, :type, :id)
   end
 end

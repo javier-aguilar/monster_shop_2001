@@ -74,14 +74,14 @@ RSpec.describe 'Profile', type: :feature do
 
       click_button("Submit Form")
 
-      expect(current_path).to eq("/profile/#{@user.id}/edit")
+      expect(current_path).to eq("/profile/#{@user.id}")
       expect(page).to have_content("Email has already been taken")
     end
 
     it "can update password" do
       click_on("Edit My Password")
 
-      expect(current_path).to eq("/profile/#{@user.id}/password")
+      expect(current_path).to eq("/password/#{@user.id}/edit")
 
       fill_in :password, with: "NewPW1234!"
       fill_in :password_confirmation, with: "NewPW1234!"
@@ -94,20 +94,20 @@ RSpec.describe 'Profile', type: :feature do
     it "validates password presence and confirmation on update" do
       click_on("Edit My Password")
 
-      expect(current_path).to eq("/profile/#{@user.id}/password")
+      expect(current_path).to eq("/password/#{@user.id}/edit")
 
       fill_in :password, with: ""
       fill_in :password_confirmation, with: ""
       click_on("Submit")
 
-      expect(current_path).to eq("/profile/#{@user.id}/password")
+      expect(current_path).to eq("/password/#{@user.id}")
       expect(page).to have_content("You are missing required fields.")
 
       fill_in :password, with: "ABC"
       fill_in :password_confirmation, with: "123"
       click_on("Submit")
 
-      expect(current_path).to eq("/profile/#{@user.id}/password")
+      expect(current_path).to eq("/password/#{@user.id}")
       expect(page).to have_content("Password and confirmation must match.")
     end
   end

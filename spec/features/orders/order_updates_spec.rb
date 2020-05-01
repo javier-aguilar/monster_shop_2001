@@ -30,17 +30,17 @@ RSpec.describe("Orders") do
     expect(@line_item_2.status).to eq("Pending")
     expect(@line_item_3.status).to eq("Pending")
 
-    visit "/item_order/#{@line_item_1.id}"
+    visit "/item_orders/#{@line_item_1.id}"
     click_on("Fulfill Order")
     @order_1.reload
     expect(@order_1.status).to eq("Pending")
 
-    visit "/item_order/#{@line_item_2.id}"
+    visit "/item_orders/#{@line_item_2.id}"
     click_on("Fulfill Order")
     @order_1.reload
     expect(@order_1.status).to eq("Pending")
 
-    visit "/item_order/#{@line_item_3.id}"
+    visit "/item_orders/#{@line_item_3.id}"
     click_on("Fulfill Order")
     @order_1.reload
     expect(@order_1.status).to eq("Packaged")
